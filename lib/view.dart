@@ -14,22 +14,24 @@ class View extends StatefulWidget {
 
 class _ViewState extends State<View> {
   TextEditingController nameController = new TextEditingController();
-  TextEditingController sexController = new TextEditingController();
-  TextEditingController ageController = new TextEditingController();
-  TextEditingController heightController = new TextEditingController();
   TextEditingController weightController = new TextEditingController();
+  TextEditingController heightController = new TextEditingController();
+  TextEditingController sexController = new TextEditingController();
+  TextEditingController yearController = new TextEditingController();
+  TextEditingController bmController = new TextEditingController();
 
-  double _result;
+  double result;
 
   @override
   void initState() {
     super.initState();
     print(widget.country);
     nameController.text = widget.country['name'];
-    sexController.text = widget.country['sex'];
-    ageController.text = widget.country['age'];
     weightController.text = widget.country['weight'];
     heightController.text = widget.country['height'];
+    sexController.text = widget.country['sex'];
+    yearController.text = widget.country['year'];
+    bmController.text = widget.country['bm'];
   }
 
   @override
@@ -38,7 +40,7 @@ class _ViewState extends State<View> {
       backgroundColor: Color(0xff00BCD1),
       appBar: AppBar(
         //backgroundColor: Color.fromRGBO(56, 75, 49, 1.0),
-        title: Text("BMI"),
+        title: Text("EDIT BMI"),
         actions: [
           IconButton(
               icon: Icon(Icons.delete),
@@ -55,24 +57,8 @@ class _ViewState extends State<View> {
             children: [
               TextFormField(
                 style: TextStyle(color: Colors.white),
-                decoration: inputDecoration("Name"),
+                decoration: inputDecoration("Name-Surname"),
                 controller: nameController,
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              TextFormField(
-                style: TextStyle(color: Colors.white),
-                decoration: inputDecoration("Sex"),
-                controller: sexController,
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              TextFormField(
-                style: TextStyle(color: Colors.white),
-                decoration: inputDecoration("Age"),
-                controller: ageController,
               ),
               SizedBox(
                 height: 20,
@@ -90,6 +76,50 @@ class _ViewState extends State<View> {
                 decoration: inputDecoration("Height"),
                 controller: heightController,
               ),
+              SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                style: TextStyle(color: Colors.white),
+                decoration: inputDecoration("Sex"),
+                controller: sexController,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                style: TextStyle(color: Colors.white),
+                decoration: inputDecoration("Year"),
+                controller: yearController,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                style: TextStyle(color: Colors.white),
+                decoration: inputDecoration("BMI"),
+                controller: bmController,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              RaisedButton(
+                color: Colors.pinkAccent,
+                child: Text(
+                  "Calculate",
+                  style: TextStyle(color: Colors.white),
+                ),
+                onPressed: calculateBMI,
+              ),
+              SizedBox(height: 20),
+              Text(
+                result == null ? "Enter Value" : "${result.toStringAsFixed(2)}",
+                style: TextStyle(
+                  color: Colors.redAccent,
+                  fontSize: 19.4,
+                  fontWeight: FontWeight.w500,
+                ),
+              )
             ],
           ),
         ),
@@ -103,13 +133,12 @@ class _ViewState extends State<View> {
               //color: Colors.black,
               onPressed: () {
                 widget.db.create(
-                  nameController.text,
-                  sexController.text,
-                  ageController.text,
-                  weightController.text,
-                  heightController.text,
-                );
-
+                    nameController.text,
+                    weightController.text,
+                    heightController.text,
+                    sexController.text,
+                    yearController.text,
+                    bmController.text);
                 Navigator.pop(context, true);
               },
               child: Text(
@@ -146,9 +175,9 @@ class _ViewState extends State<View> {
     double weight = double.parse(weightController.text);
 
     double heightSquare = height * height;
-    double result = weight / heightSquare;
+    double results = weight / heightSquare;
 
-    _result = result;
+    result = results;
 
     setState(() {});
   }

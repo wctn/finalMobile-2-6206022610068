@@ -13,12 +13,12 @@ class Add extends StatefulWidget {
 
 class _AddState extends State<Add> {
   TextEditingController nameController = new TextEditingController();
-  TextEditingController sexController = new TextEditingController();
-  TextEditingController ageController = new TextEditingController();
   TextEditingController weightController = new TextEditingController();
   TextEditingController heightController = new TextEditingController();
-
-  double _result;
+  TextEditingController sexController = new TextEditingController();
+  TextEditingController yearController = new TextEditingController();
+  TextEditingController bmController = new TextEditingController();
+  double result;
 
   @override
   void initState() {
@@ -48,24 +48,8 @@ class _AddState extends State<Add> {
             children: [
               TextFormField(
                 style: TextStyle(color: Colors.white),
-                decoration: inputDecoration("Name"),
+                decoration: inputDecoration("Name-Surname"),
                 controller: nameController,
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              TextFormField(
-                style: TextStyle(color: Colors.white),
-                decoration: inputDecoration("Sex"),
-                controller: sexController,
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              TextFormField(
-                style: TextStyle(color: Colors.white),
-                decoration: inputDecoration("Age"),
-                controller: ageController,
               ),
               SizedBox(
                 height: 20,
@@ -83,6 +67,50 @@ class _AddState extends State<Add> {
                 decoration: inputDecoration("Height"),
                 controller: heightController,
               ),
+              SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                style: TextStyle(color: Colors.white),
+                decoration: inputDecoration("Sex"),
+                controller: sexController,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                style: TextStyle(color: Colors.white),
+                decoration: inputDecoration("Year"),
+                controller: yearController,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                style: TextStyle(color: Colors.white),
+                decoration: inputDecoration("BMI"),
+                controller: bmController,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              RaisedButton(
+                color: Colors.pinkAccent,
+                child: Text(
+                  "Calculate",
+                  style: TextStyle(color: Colors.white),
+                ),
+                onPressed: calculateBMI,
+              ),
+              SizedBox(height: 20),
+              Text(
+                result == null ? "Enter Value" : "${result.toStringAsFixed(2)}",
+                style: TextStyle(
+                  color: Colors.redAccent,
+                  fontSize: 19.4,
+                  fontWeight: FontWeight.w500,
+                ),
+              )
             ],
           ),
         ),
@@ -96,16 +124,16 @@ class _AddState extends State<Add> {
               //color: Colors.black,
               onPressed: () {
                 widget.db.create(
-                  nameController.text,
-                  sexController.text,
-                  ageController.text,
-                  weightController.text,
-                  heightController.text,
-                );
+                    nameController.text,
+                    weightController.text,
+                    heightController.text,
+                    sexController.text,
+                    yearController.text,
+                    bmController.text);
                 Navigator.pop(context, true);
               },
               child: Text(
-                "Calculate",
+                "Save",
                 style: TextStyle(color: Colors.white),
               )),
         ),
@@ -138,10 +166,8 @@ class _AddState extends State<Add> {
     double weight = double.parse(weightController.text);
 
     double heightSquare = height * height;
-    double result = weight / heightSquare;
-
-    _result = result;
-
+    double results = weight / heightSquare;
+    result = results;
     setState(() {});
   }
 }

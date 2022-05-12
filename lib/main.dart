@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:week15/database.dart';
-import 'package:week15/add.dart';
-import 'package:week15/view.dart';
+import 'package:my_project/database.dart';
+import 'package:my_project/add.dart';
+import 'package:my_project/view.dart';
 import 'package:flutter/material.dart';
 
 Future<void> main() async {
@@ -56,10 +56,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 87, 41, 136),
+      backgroundColor: Color(0xff00BCD1),
       appBar: AppBar(
         //backgroundColor: Color.fromRGBO(56, 75, 49, 1.0),
-        title: Text("Firebase CRUD New"),
+        title: Text("LIST BMI"),
       ),
       body: ListView.builder(
         itemCount: docs.length,
@@ -80,14 +80,14 @@ class _MyHomePageState extends State<MyHomePage> {
               contentPadding: EdgeInsets.only(right: 30, left: 36),
               title: Text(docs[index]['name']),
               //trailing: Text(docs[index]['year']),
-              trailing: Text(docs[index]['age']),
-              subtitle: Text('Sex : ' +
+              trailing: Text(docs[index]['bm']),
+              subtitle: Text('Sex:' +
                   docs[index]['sex'] +
-                  " Age : " +
+                  " | Year:" +
                   docs[index]['year'] +
-                  " Height : " +
+                  " | Height:" +
                   docs[index]['height'] +
-                  " Weight : " +
+                  " | Weight:" +
                   docs[index]['weight']),
             ),
           );
