@@ -7,16 +7,16 @@ class Database {
     firestore = FirebaseFirestore.instance;
   }
 
-  Future<void> create(String name, String weight, String height, String sex,
-      String year, String bm) async {
+  Future<void> create(String name, String sex, String age, String weight,
+      String height, String bmi) async {
     try {
       await firestore.collection("BMI").add({
         'height': height,
+        'sex': sex,
+        'age': age,
         'name': name,
         'weight': weight,
-        'sex': sex,
-        'year': year,
-        'bm': bm,
+        'bmi': bmi,
         'times': FieldValue.serverTimestamp()
       });
     } catch (e) {
@@ -42,10 +42,10 @@ class Database {
           Map a = {
             "id": doc.id,
             "name": doc['name'],
+            "sex": doc["sex"],
+            "age": doc["age"],
             "height": doc["height"],
             "weight": doc["weight"],
-            "sex": doc["sex"],
-            "year": doc["year"],
             "bm": doc["bm"]
           };
           docs.add(a);
@@ -57,16 +57,16 @@ class Database {
     }
   }
 
-  Future<void> update(String id, String name, String weight, String height,
-      String sex, String year, String bm) async {
+  Future<void> update(String id, String name, String sex, String age,
+      String weight, String height, String bmi) async {
     try {
       await firestore.collection("BMI").doc(id).update({
         'name': name,
+        'sex': sex,
+        'age': age,
         'weight': weight,
         'height': height,
-        'sex': sex,
-        'year': year,
-        'bm': bm
+        'bmi': bmi
       });
     } catch (e) {
       print(e);
