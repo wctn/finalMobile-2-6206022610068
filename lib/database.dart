@@ -46,7 +46,7 @@ class Database {
             "age": doc["age"],
             "height": doc["height"],
             "weight": doc["weight"],
-            "bm": doc["bm"]
+            "bmi": doc["bmi"]
           };
           docs.add(a);
         }

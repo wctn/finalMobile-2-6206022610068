@@ -16,8 +16,8 @@ class _AddState extends State<Add> {
   TextEditingController weightController = new TextEditingController();
   TextEditingController heightController = new TextEditingController();
   TextEditingController sexController = new TextEditingController();
-  TextEditingController yearController = new TextEditingController();
-  TextEditingController bmController = new TextEditingController();
+  TextEditingController ageController = new TextEditingController();
+  TextEditingController bmiController = new TextEditingController();
   double result;
 
   @override
@@ -28,7 +28,7 @@ class _AddState extends State<Add> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff00BCD1),
+      backgroundColor: Color.fromARGB(255, 186, 120, 191),
       appBar: AppBar(
         //backgroundColor: Color.fromRGBO(56, 75, 49, 1.0),
         title: Text("ADD BMI"),
@@ -80,8 +80,8 @@ class _AddState extends State<Add> {
               ),
               TextFormField(
                 style: TextStyle(color: Colors.white),
-                decoration: inputDecoration("Year"),
-                controller: yearController,
+                decoration: inputDecoration("Age"),
+                controller: ageController,
               ),
               SizedBox(
                 height: 20,
@@ -89,7 +89,7 @@ class _AddState extends State<Add> {
               TextFormField(
                 style: TextStyle(color: Colors.white),
                 decoration: inputDecoration("BMI"),
-                controller: bmController,
+                controller: bmiController,
               ),
               SizedBox(
                 height: 20,
@@ -128,8 +128,8 @@ class _AddState extends State<Add> {
                     weightController.text,
                     heightController.text,
                     sexController.text,
-                    yearController.text,
-                    bmController.text);
+                    ageController.text,
+                    bmiController.text);
                 Navigator.pop(context, true);
               },
               child: Text(

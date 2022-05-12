@@ -56,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff00BCD1),
+      backgroundColor: Color.fromARGB(255, 200, 111, 182),
       appBar: AppBar(
         //backgroundColor: Color.fromRGBO(56, 75, 49, 1.0),
         title: Text("LIST BMI"),
@@ -79,8 +79,8 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               contentPadding: EdgeInsets.only(right: 30, left: 36),
               title: Text(docs[index]['name']),
-              //trailing: Text(docs[index]['year']),
-              trailing: Text(docs[index]['bm']),
+              //trailing: Text(docs[index]['age']),
+              trailing: Text(docs[index]['bmi']),
               subtitle: Text('Sex:' +
                   docs[index]['sex'] +
                   " | Age:" +
