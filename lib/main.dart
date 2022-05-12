@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:my_project/database.dart';
-import 'package:my_project/add.dart';
-import 'package:my_project/view.dart';
+import 'package:week15/database.dart';
+import 'package:week15/add.dart';
+import 'package:week15/view.dart';
 import 'package:flutter/material.dart';
 
 Future<void> main() async {
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'BMI Calculator',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.pink,
       ),
       home: MyHomePage(title: 'BMI Calculator'),
     );
@@ -83,8 +83,8 @@ class _MyHomePageState extends State<MyHomePage> {
               trailing: Text(docs[index]['bm']),
               subtitle: Text('Sex:' +
                   docs[index]['sex'] +
-                  " | Year:" +
-                  docs[index]['year'] +
+                  " | Age:" +
+                  docs[index]['age'] +
                   " | Height:" +
                   docs[index]['height'] +
                   " | Weight:" +

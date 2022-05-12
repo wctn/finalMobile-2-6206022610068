@@ -14,11 +14,12 @@ class View extends StatefulWidget {
 
 class _ViewState extends State<View> {
   TextEditingController nameController = new TextEditingController();
+  TextEditingController sexController = new TextEditingController();
+  TextEditingController ageController = new TextEditingController();
   TextEditingController weightController = new TextEditingController();
   TextEditingController heightController = new TextEditingController();
-  TextEditingController sexController = new TextEditingController();
-  TextEditingController yearController = new TextEditingController();
-  TextEditingController bmController = new TextEditingController();
+
+  TextEditingController bmiController = new TextEditingController();
 
   double result;
 
@@ -27,17 +28,18 @@ class _ViewState extends State<View> {
     super.initState();
     print(widget.country);
     nameController.text = widget.country['name'];
+    sexController.text = widget.country['sex'];
+    ageController.text = widget.country['age'];
     weightController.text = widget.country['weight'];
     heightController.text = widget.country['height'];
-    sexController.text = widget.country['sex'];
-    yearController.text = widget.country['year'];
-    bmController.text = widget.country['bm'];
+
+    bmiController.text = widget.country['bmi'];
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff00BCD1),
+      backgroundColor: Color.fromARGB(255, 127, 12, 60),
       appBar: AppBar(
         //backgroundColor: Color.fromRGBO(56, 75, 49, 1.0),
         title: Text("EDIT BMI"),
@@ -57,8 +59,24 @@ class _ViewState extends State<View> {
             children: [
               TextFormField(
                 style: TextStyle(color: Colors.white),
-                decoration: inputDecoration("Name-Surname"),
+                decoration: inputDecoration("Name"),
                 controller: nameController,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                style: TextStyle(color: Colors.white),
+                decoration: inputDecoration("Sex"),
+                controller: sexController,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                style: TextStyle(color: Colors.white),
+                decoration: inputDecoration("Age"),
+                controller: ageController,
               ),
               SizedBox(
                 height: 20,
@@ -81,24 +99,8 @@ class _ViewState extends State<View> {
               ),
               TextFormField(
                 style: TextStyle(color: Colors.white),
-                decoration: inputDecoration("Sex"),
-                controller: sexController,
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              TextFormField(
-                style: TextStyle(color: Colors.white),
-                decoration: inputDecoration("Year"),
-                controller: yearController,
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              TextFormField(
-                style: TextStyle(color: Colors.white),
                 decoration: inputDecoration("BMI"),
-                controller: bmController,
+                controller: bmiController,
               ),
               SizedBox(
                 height: 20,
@@ -134,11 +136,11 @@ class _ViewState extends State<View> {
               onPressed: () {
                 widget.db.create(
                     nameController.text,
+                    sexController.text,
+                    ageController.text,
                     weightController.text,
                     heightController.text,
-                    sexController.text,
-                    yearController.text,
-                    bmController.text);
+                    bmiController.text);
                 Navigator.pop(context, true);
               },
               child: Text(
